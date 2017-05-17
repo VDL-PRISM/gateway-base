@@ -7,6 +7,7 @@ script:
   - travis_wait 40 docker build -t prisms/gateway-base .
   - docker run prisms/gateway-base which mosquitto
   - docker run prisms/gateway-base which influx
+  - docker run prisms/gateway-base python -c "import openzwave"
   - >
     if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
       docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
