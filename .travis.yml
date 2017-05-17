@@ -4,7 +4,7 @@ services:
 language: bash
 script:
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
-  - travis_wait 30 docker build -t prisms/gateway-base .
+  - travis_wait 40 docker build -t prisms/gateway-base .
   - docker run prisms/gateway-base which mosquitto
   - docker run prisms/gateway-base which influx
   - >
