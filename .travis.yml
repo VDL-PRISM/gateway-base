@@ -4,5 +4,14 @@ services:
 language: bash
 script:
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
-  - docker build -t VDL-PRISM/gateway-base .
-  # - docker run VDL-PRISM/gateway-base mysql --version
+  - docker build -t prisms/gateway-base .
+  # - docker run prisms/gateway-base mysql --version
+  - >
+    if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+      docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
+      export REPO=prisms/gateway-base
+      TAG=$(grep "ENV BASE_VERSION" Dockerfile | awk 'NF>1{print $NF}')
+      docker tag $REPO $REPO:$TAG
+      docker push $REPO:$TAG
+      docker push $REPO
+    fi
