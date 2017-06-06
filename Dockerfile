@@ -25,4 +25,4 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN pip install --no-cache-dir bluepy==1.1.0
 
-ENV BASE_VERSION 1.1.1
+ENV BASE_VERSION 1.2.0
