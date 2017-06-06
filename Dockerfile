@@ -19,9 +19,9 @@ ADD "https://dl.influxdata.com/influxdb/releases/influxdb_${INFLUXDB_VERSION}_ar
 RUN dpkg -i "influxdb_${INFLUXDB_VERSION}_armhf.deb" && \
     rm "influxdb_${INFLUXDB_VERSION}_armhf.deb"
 
-# Install bluepy
+# Install Bluetooth
 RUN apt-get update && apt-get install -y \
-    libglib2.0-dev && \
+    bluez bluetooth usbutils libglib2.0-dev && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN pip install --no-cache-dir bluepy==1.1.0
 
